@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>pagina de login</title>
+    <link rel="stylesheet" href="./css/login.css">
+</head>
+
+<body>
+    <nav>
+        <ul>
+            <li><a href="./index.html"><span class="inicio1">Cow</span> <span class="meio">-</span> <span class="fim">welfare
+                    </span> </li></a>
+            <li><a href="./simulador_financeiro.html">Simulador financeiro</a></li>
+            
+
+            <div class="elementos">
+                <li><a href="./login.html"></a></li>
+                <li><a href="./tela_cadastro.html">Cadastro</a></li>
+            </div>
+    </nav>
+<div class="quadrado">
+    <form id="form_login" method="post" onsubmit="return entrar()">
+
+        <h3>Login</h3>
+
+        <label for="">usuario</label>
+         <input type="text" name="login">
+        <br><br>
+        <label for="">senha</label>
+        <input type="password" name="senha">
+        <br>
+        <button id="btn_entrar">Entrar</button>
+    </form>
+
+    </div>
+    
+</body>
+
+</html>
+<script>
+  // <![CDATA[
+  var ttChatLoaderS = document.createElement('script');
+    document.tomticketChatLoaderScriptVersion = 2;
+    ttChatLoaderS.src = 'https://cow-welfare.tomticket.com/scripts-chat/chat.min.js'
+    + '?id=EP36746'
+    + '&account=2351744P11112019032827'
+    + '&autoOpen=0'
+    + '&hideWhenOffline=0'
+    + '&d=cow-welfare'
+    + '&ts=' + new Date().getTime()
+    + '&ref=' + encodeURIComponent(document.URL);
+    document.body.appendChild(ttChatLoaderS);
+    //]]>
+    function entrar() {
+        
+        var formulario = new URLSearchParams(new FormData(form_login));
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            body: formulario
+        }).then(resposta => {
+
+            if (resposta.ok) {
+
+                resposta.json().then(json => {
+
+                    sessionStorage.login_usuario_meuapp = json.email_usuario;
+                    sessionStorage.nome_usuario_meuapp = json.nome_usuario;
+
+                    window.location.href = 'dashboard.html';
+                });
+
+            } else {
+
+                console.log('Erro de login!');
+
+                response.text().then(texto => {
+                    console.error(texto);
+
+                });
+            }
+        });
+
+        return false;
+    }
+
+
+
+</script>

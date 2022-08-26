@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Página com exemplo de gráfico com Chart.js</title>
+
+    <!-- scripts do Chart.js -->
+    <script type="text/javascript" src="https://www.chartjs.org/dist/2.8.0/Chart.min.js"></script>
+    <script type="text/javascript" src="https://www.chartjs.org/samples/latest/utils.js"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
+    <link rel="stylesheet" href="./css/Dashboard.css">
+    <script src="./css/grafico.js"></script>
+
+</head>
+
+<body onload="atualizarGraficoLinha();" style="background-color:  rgba(0,0,0,0.3)">
+        <nav>
+
+                <ul>
+                    <li><a href="./index.html"><span class="inicio1">Cow</span> <span class="meio">-</span> <span
+                                class="fim">welfare </span> </li></a>
+                    <li><a href="./simulador_financeiro.html">Simulador financeiro</a></li>
+                    <li><a href="./dashboard.html">Visualizador</a></li>
+                    <li><a href="./Manual de instalação.pdf">Manual instalação</a></li>
+                    <div class="separados">
+                            <li><span style="color: white"> Olá,</span> <b id="b_usuario" style="color: white"></b></li>
+                        <li><a onclick="logoff()" href="./login.html">Sair</a></li>
+                        
+                    </div>
+                </ul>
+            </nav>
+   
+    <div>
+        
+       
+    </div>
+    <div style="width:75%; margin-top: 40px">
+        <div id="div_aguarde" >Dados sendo obtidos...</div>
+        <canvas id="canvas_grafico"></canvas>
+    </div>
+</body>
+
+</html>
+<script>
+
+  // <![CDATA[
+  var ttChatLoaderS = document.createElement('script');
+    document.tomticketChatLoaderScriptVersion = 2;
+    ttChatLoaderS.src = 'https://cow-welfare.tomticket.com/scripts-chat/chat.min.js'
+    + '?id=EP36746'
+    + '&account=2351744P11112019032827'
+    + '&autoOpen=0'
+    + '&hideWhenOffline=0'
+    + '&d=cow-welfare'
+    + '&ts=' + new Date().getTime()
+    + '&ref=' + encodeURIComponent(document.URL);
+    document.body.appendChild(ttChatLoaderS);
+    //]]>
+    var exibiu_grafico = false;
+
+  
+</script>

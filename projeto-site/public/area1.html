@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+
+<html lang="pt">
+
+<head>
+	<script rel="javascript" src="../routes/leituras.js"></script>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Area 1</title>
+	<link rel="stylesheet" href="./css/areas.css">
+	<script src="https://www.chartjs.org/dist/2.9.2/Chart.min.js"></script>
+	<script src="https://www.chartjs.org/samples/latest/utils.js"></script>
+	<style>
+		canvas {
+			-moz-user-select: none;
+			-webkit-user-select: none;
+			-ms-user-select: none;
+		}
+	</style>
+</head>
+
+<body>
+	<nav>
+
+        <ul>
+            <li><a href="./index.html"><span class="inicio1">Cow</span> <span class="meio">-</span> <span
+                        class="fim">welfare </span> </li></a>
+            <li><a href="./simulador_financeiro.html">Simulador financeiro</a></li>
+            <li><a href="./area1.html">Dashboard</a></li>
+            <div class="separados">
+                <li><a href="./tela de login.html">Login</a></li>
+                <li><a href="./tela_de_cadastro.html">Cadastro</a></li>
+            </div>
+        </ul>
+
+    </nav>
+	<h2>Area 1</h2>
+	<div style="width:65%;" class="grafico">
+		<canvas id="canvas"></canvas>
+	</div>
+	<footer>© Direitos reservados a cow-welfare!</footer>
+	
+	<script>
+		var momentos = ['teste', '14:05:21', '14:05:30', '14:05:42', '14:05:52'];
+		var config = {
+			type: 'line',
+			data: {
+				labels: ['14:05:21', '14:05:21', '14:05:30', '14:05:42', '14:05:52' ],
+				datasets: [{
+					label: 'Temperatura em Cº',
+					backgroundColor: window.chartColors.red,
+					borderColor: window.chartColors.red,
+					data: [10, 20, 24, 63, 23, 24, 24],
+					data: [
+				21,23,67,98,21,23,67,98
+					],
+					fill: false,
+				}, {
+					label: 'Umidade em %',
+					fill: false,
+					backgroundColor: window.chartColors.blue,
+					borderColor: window.chartColors.blue,
+					data: [10, 20, 24, 63, 23, 24, 24],
+					data: [
+					21,23,67,98,21,23,67,98
+					],
+				}]
+			},
+			options: {
+				responsive: true,
+				title: {
+					display: true,
+					text: 'Temperatura e umidade'
+				},
+				tooltips: {
+					mode: 'index',
+					intersect: false,
+				},
+				hover: {
+					mode: 'nearest',
+					intersect: true
+				},
+				scales: {
+					xAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Momento'
+						}
+					}],
+					yAxes: [{
+						display: true,
+						scaleLabel: {
+							display: true,
+							labelString: 'Valor'
+						}
+					}]
+				}	
+			}
+		};
+
+		window.onload = function () {
+			var ctx = document.getElementById('canvas').getContext('2d');
+			window.myLine = new Chart(ctx, config);
+			atualizarGrafico();
+		};
+
+		function atualizarGrafico() {
+			config.data.datasets.forEach(function (dataset) {
+				dataset.data = dataset.data.map(function () {
+					return randomScalingFactor();
+				});
+
+			});
+
+			window.myLine.update();
+
+			setTimeout(() => {
+				atualizarGrafico();
+			}, 10000);
+            window.myLine.update();
+            
+            setTimeout(() => {
+               atualizarGrafico(); 
+            }, 10000);
+		};
+
+
+		console.log(config.data.datasets[0].data);
+		console.log(config.data.datasets[1].data);
+
+		
+	</script>
+</body>
+
+</html>

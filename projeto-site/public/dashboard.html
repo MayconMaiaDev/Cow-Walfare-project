@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/Dashboard.css">
+    <title>Página com exemplo de gráfico p/ tempo real</title>
+
+    <!-- script do google charts -->
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="funcoes.js"></script>
+    <script src="./css/grafico.js"></script>
+    <style>
+        /* Classes CSS para exemplos de alertas */
+        .normal {
+            background-color: white;
+        }
+
+        .alerta {
+            background-color: tomato;
+        }
+    </style>
+
+</head>
+<div class="img">
+    <img src="./imagens/vaca_simulador_financeiro.jpg" alt="">
+</div>
+
+<body onload="atualizarGrafico()" onload="atualizarGraficoLinha();">
+
+    <nav>
+            
+        <ul>
+            <li><a href="./index.html"><span class="inicio1">Cow</span> <span class="meio">-</span> <span
+                        class="fim">welfare
+                    </span> </li></a>
+            <li><a href="./simulador_financeiro.html">Simulador financeiro</a></li>
+            <li><a href="./dashboard.html">Visualizador</a></li>
+            <li><a href="./Manual de instalação.pdf">Manual instalação</a></li>
+            <div class="separados">
+              
+                <li><a href="">Olá : <b id='b_usuario'></b></a></li>
+                <li><a href="./login.html">Sair</a></li>
+            </div>
+        </ul>
+    </nav>
+
+    <a class="AS" href="./grafico-chartjs.html">
+        <div class="area1">
+           
+            <div class="velocimetro" style="width:75%;">
+             
+                <span style="color:white; font-size: 30px;">Temperatura </span> <br> <b id="tempB" style="color: white;"></b><br>
+                <span style="color: white">-----------------------------------------------------</span> <br>
+            <span style="color:white; font-size: 30px;"> Umidade </span>  <br><b id="humB" style="color: white;"></b> <br>
+                <div id="div_temperatura" style="display: none;">Temperatura sendo obtida...</div> <br>
+                <div id="div_umidade" style="display: none;">Umidade sendo obtida...</div>
+               <br> <br>  <div id="div_alerta" class="alerta"></div> 
+               <div class="vacas">Curral de vacas holandesas</div>
+            </div>
+        </div>
+
+    </a>
+
+
+
+    <a class="AS2" href="./grafico-chartjs.html">
+        <div class="area2">
+           
+            <div class="velocimeto2" style="width:75%;">
+               <span style="color:white; font-size: 30px;margin-top: auto;">Temperatura </span> <br> <b id="" style="color: white;" class="numeros">24.00 °C</b><br>
+               <span style="color: white">-----------------------------------------------------</span> <br>
+            <span style="color:white; font-size: 30px;"> Umidade </span>  <br><b id="" style="color: white;" class="numeros">50.00 %</b> <br>
+                <div id="div_temperatura2" style="display: none;">Temperatura sendo obtida...</div> <br>
+                <div id="div_umidade2" style="display: none;">Umidade sendo obtida...</div>
+               <br> <br>  <div id="div_alerta2" class="alerta2"></div> 
+               <div class="vacas">Curral de vacas Pardo Suíça</div>
+            </div>
+        </div>
+
+    </a>
+
+    <a class="AS3" href="./grafico-chartjs.html">
+        <div class="area3">
+            
+            <div class="velocimeto3" style="width:75%;">
+               <span style="color:white; font-size: 30px;">Temperatura </span> <br> <b id="" style="color: white;" class="numeros">22.00 °C</b><br>
+                <span style="color: white">-----------------------------------------------------</span> <br>
+            <span style="color:white; font-size: 30px;"> Umidade </span>  <br><b id="" style="color: white;"class="numeros">54.00 %</b> <br>
+                <div id="div_temperatura3" style="display: none;">Temperatura sendo obtida...</div> <br>
+                <div id="div_umidade3" style="display: none;">Umidade sendo obtida...</div>
+               <br> <br>  <div id="div_alerta3" class="alerta2"></div> 
+               <div class="vacas">Curral de vacas Normando</div>
+            </div>
+        </div>
+
+    </a>
+
+
+</body>
+
+
+</html>
+<script>
+    
+    let usuario;
+    verificar_autenticacao();
+    // <![CDATA[
+    var ttChatLoaderS = document.createElement('script');
+    document.tomticketChatLoaderScriptVersion = 2;
+    ttChatLoaderS.src = 'https://cow-welfare.tomticket.com/scripts-chat/chat.min.js'
+        + '?id=EP36746'
+        + '&account=2351744P11112019032827'
+        + '&autoOpen=0'
+        + '&hideWhenOffline=0'
+        + '&d=cow-welfare'
+        + '&ts=' + new Date().getTime()
+        + '&ref=' + encodeURIComponent(document.URL);
+    document.body.appendChild(ttChatLoaderS);
+    //]]>
+
+
+    // Não mexa nestas 2 linhas! 
+    //google.load('current', {'packages':['gauge']});
+    //google.charts.setOnLoadCallback(obterDadosGrafico);
+    google.load('visualization', '1', {
+        packages: ['corechart', 'gauge'],
+        callback: obterDadosGrafico1
+    });
+    // Não mexa nessas 2 linhas! 
+    // só mexer se quiser alterar o tempo de atualização
+    // ou se souber o que está fazendo!
+    function atualizarGrafico() {
+        obterDadosGrafico1();
+        setTimeout(atualizarGrafico, 3000);
+    }
+    // altere aqui as configurações do gráfico
+    // (tamanhos, cores, textos, etc)
+    function configurarGrafico() {
+        // os valores de yellowTo, yellowTo, redFrom e redTo
+        // podem vir de um outro EndPoint
+        var configuracoes = {
+            temperatura: {
+                width: 400,
+                height: 120,
+                yellowFrom: 00,
+                yellowTo: 20,
+                yellowColor: 'cyan',
+                redFrom: 40,
+                redTo: 60,
+                max: 60,
+                minorTicks: 5
+            },
+            umidade: {
+                width: 400,
+                height: 120,
+                yellowFrom: 00,
+                yellowTo: 50,
+                yellowColor: 'cyan',
+                redFrom: 85,
+                redTo: 100,
+                max: 100,
+                minorTicks: 5
+            },
+        }
+        return configuracoes;
+    }
+    // altere aqui como os dados serão exibidos
+    // e como são recuperados do BackEnd
+    function obterDadosGrafico1() {
+        var dados;
+        fetch('/leituras/tempo-real', { cache: 'no-store' }).then(function (response) {
+            if (response.ok) {
+                response.json().then(function (resposta) {
+                    tempB.innerHTML = Number(resposta.temperatura).toFixed(2) + ' ' + 'Cº'
+                    humB.innerHTML = Number(resposta.umidade).toFixed(2) + ' ' + '%'
+                    console.log(`Dados recebidos: ${JSON.stringify(dados)}`);
+                    // aqui, após registro. use os nomes 
+                    // dos atributos que vem no JSON 
+                    // que gerou na consulta ao banco de dados
+                    dadosTemperatura = google.visualization.arrayToDataTable([
+                        ['Label', 'Value'],
+                        ['temperatura', resposta.temperatura]
+                    ]);
+                    dadosUmidade = google.visualization.arrayToDataTable([
+                        ['Label', 'Value'],
+                        ['umidade', resposta.umidade]
+                    ]);
+                    var dados = {
+                        temperatura: dadosTemperatura,
+                        umidade: dadosUmidade
+                    }
+
+                    alertar(resposta.temperatura, resposta.umidade);
+                    plotarGrafico(dados);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+    function alertar(temperatura, umidade) {
+        // ideal que venham de algum EndPoint
+        var limites = {
+            max_temperatura: 24,
+            min_temperatura: 4,
+            max_umidade: 80,
+            min_umidade: 40,
+        };
+        var mensagem = '';
+        if (temperatura > limites.max_temperatura) {
+            mensagem += ' Temperatura alta demais! <br>';
+        }
+        if (umidade > limites.max_umidade) {
+            mensagem += ' Umidade alta demais! <br>';
+        }
+        if (temperatura < limites.min_temperatura) {
+            mensagem += ' Temperatura baixa demais! <br>';
+        }
+        if (umidade < limites.min_umidade) {
+            mensagem += ' Umidade baixa demais! <br>';
+        }
+
+        div_alerta.innerHTML = mensagem;
+    }
+    // só altere aqui se souber o que está fazendo!
+    function plotarGrafico(dados) {
+        console.log('iniciando plotagem dos gráficos...');
+        var chartTemperatura = new google.visualization.Gauge(div_temperatura);
+        chartTemperatura.draw(dados.temperatura, configurarGrafico().temperatura);
+        var chartUmidade = new google.visualization.Gauge(div_umidade);
+        chartUmidade.draw(dados.umidade, configurarGrafico().umidade);
+    }
+
+</script>

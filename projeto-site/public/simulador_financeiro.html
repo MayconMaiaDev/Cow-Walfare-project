@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/style.css">
+    <title> Simulador Financeiro </title>
+
+</head>
+
+<img id="background-img" src="./imagens/fundo-fazenda-inicio.jpg" alt="">
+<nav>
+    <div id="menu">
+        <ul>
+            <li><a href="./index.html"><span class="inicio1">Cow</span> <span class="meio">-</span> <span class="fim">welfare </span> </li></a>
+            <li><a href="./simulador_financeiro.html">simulador Financeiro</a></li>
+            
+            <div>
+                <li><a href="./login.html" class="">login</a></li>
+                <li><a href="./tela_cadastro.html" class="">cadastro</a></li>
+            </div>
+        </ul>
+    </div>
+</nav>
+
+<div class = "espacamento">
+
+</div>
+
+
+    <div class="entrada " >
+        
+        <h2 style = "color: white"> <span class="calculo_text">Cálculo de Produtividade</span> </h2>
+
+       <label for="">  Quantas vacas leiteiras voce tem?</label>   
+            <br>
+            <br> <input id="vacas" >
+    
+    
+           <label for="">Quantos litros de leite por dia uma vaca em média faz?</label>  
+            <br>
+            <br>
+            <input id="litro" >
+    
+        
+       <label for="">Quanto é o litro do leite?</label>   
+            <br>
+            <br>
+            <input id="valor_leite">
+        
+
+    
+        <button onclick="calcular()">  Calcular </button>
+
+    </div>
+
+
+    <div id="div_mensagem" class="saida">
+        <span class="alinhar_mensagem">
+        <ul>
+            <b>
+              <li> Á quantidade de lucro será de R$ <span id="perda1"></span> reais por mês</li>
+                </b>
+                    <b>
+                     <li>E nossa mensalidade é de R$ </span> <span id="mensalidade1">  reais por mês. </li>
+                            </b>
+                                <b>
+                                     <li>A quantidade media lucro por ano de leite é de R$ <span id="perda2"></span> reais.</li>
+                                    </b>
+                                </ul>
+                            </span>
+                        </div>
+    
+
+
+</body>
+
+</html>
+<script>
+    function calcular() {
+        var valor_fixo = 1 * vacas.value;
+
+
+
+
+        var valor_ano = (valor_leite.value * litro.value) * 365;
+        var valor_perda_ano = valor_ano * 0.10
+        var valor_ano_total = valor_perda_ano * vacas.value;
+        var valor_leite_mensal = valor_ano / 12;
+        var valor_perda_mensal = valor_leite_mensal * 0.10;
+        var perda_total_mes = valor_perda_mensal * vacas.value;
+
+if (Number(vacas.value) <= 80){
+    perda1.innerHTML = perda_total_mes.toFixed(2);
+        mensalidade1.innerHTML = `80`;
+        perda2.innerHTML = valor_ano_total.toFixed(2);
+}else{
+
+        perda1.innerHTML = perda_total_mes.toFixed(2);
+        mensalidade1.innerHTML = valor_fixo;
+        perda2.innerHTML = valor_ano_total.toFixed(2);
+}
+    
+
+        div_mensagem.style.display = 'block';
+    }
+</script>
+<script type="text/javascript">
+    // <![CDATA[
+    var ttChatLoaderS = document.createElement('script');
+    document.tomticketChatLoaderScriptVersion = 2;
+    ttChatLoaderS.src = 'https://cow-welfare.tomticket.com/scripts-chat/chat.min.js'
+    + '?id=EP36746'
+    + '&account=2351744P11112019032827'
+    + '&autoOpen=0'
+    + '&hideWhenOffline=0'
+    + '&d=cow-welfare'
+    + '&ts=' + new Date().getTime()
+    + '&ref=' + encodeURIComponent(document.URL);
+    document.body.appendChild(ttChatLoaderS);
+    //]]>
+    </script>
+    

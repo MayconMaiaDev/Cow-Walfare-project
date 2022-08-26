@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./css/cadastro.css">
+    <title>Cadastro</title>
+</head>
+
+<body>
+    <nav>
+
+        <ul>
+            <li><a href="./index.html"><span class="inicio1">Cow</span> <span class="meio">-</span> <span class="fim">welfare
+                    </span> </li></a>
+            <li><a href="./simulador_financeiro.html">Simulador financeiro</a></li>
+            <div class="separados">
+                <li><a href="./login.html">Login</a></li>
+                <li><a href="./cadastro.html">Cadastro</a></li>
+            </div>
+        </ul>
+
+    </nav>
+    <div>
+
+<body>
+    <div  class="principal_form">
+
+    <form id="form_cadastro" method="post">
+            <label for="">Nome</label>
+
+            <input id="nome" type="text" required minlength="4" name="Nome">
+
+            <label for="">CNPJ da Empresa</label>
+
+            <input id="cnpj" type="text" required minlength="4" name="Cnpj">
+
+            <label for="">Email</label>
+
+            <input id="email" type="text" required minlength="4" name="Email">
+
+            <label for="">Senha</label>
+
+            <input id="senha" type="password" required minlength="4" name="Senha">
+
+            <label for="">Confirme sua senha</label>
+
+            <input id="senha2" type="password" required="required">
+           <br>
+           
+
+        <button id="btn_entrar" type="submit" onclick=" return cadastrar()">Cadastrar</button>
+        
+    </form>
+</div>
+    
+    <img src="aguarde2.gif" id="img_aguarde" style="display: none;" width="100px">
+    
+    <div id="div_erro" style="background-color: sandybrown; color: maroon; display: none;">
+        Erro no cadastro
+    </div>
+
+</body>
+
+</html>
+
+<script>
+
+    function cadastrar() {
+       
+        var formulario = new URLSearchParams(new FormData(form_cadastro));
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            body: formulario
+        }).then(function (response) {
+            
+            if (response.ok) {
+
+                window.location.href='login.html';
+
+            } else {
+
+                console.log('Erro de cadastro!');
+                response.text().then(function (resposta) {
+                    div_erro.innerHTML = resposta;
+                });
+                
+            }
+        });
+
+        return false;
+    }
+
+   
+    
+    
+    
+</script>
