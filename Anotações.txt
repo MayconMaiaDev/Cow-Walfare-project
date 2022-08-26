@@ -1,0 +1,30 @@
+Side de inicio (PRIMEIRO SLIDE) = Falar sobre o que nós vamos falar do projeto exemplo: alar sobre 
+
+segundo = alar sobre o mercado de leite no brasil e no mundo bem rapidamente
+
+terceiro = falar sobre os desafios do setor, importação de leite e baixa produtividade das vacas leiteiras que ocasionam doênças
+
+Quarto = solução proposta pelo grupo 
+
+Quinto = Colocar o slide de transição de planejamento do projeto
+
+
+Setimo = Falar sobre a metodologia agil utilizada pelo grupo
+
+
+Falar sobre a temperatura ideal para a vaca 
+
+
+**controlador termico (palavra para substituir "ar-condicionado").
+
+Falar sobre os picos de temperatura e umidade 
+
+Falar do fluxograma de Help-Desk e os três niveis de atendimento
+
+Citar o Tom-Ticket (ferramenta de Help-Desk)
+
+Falar do Manual de instalação 
+
+
+
+
