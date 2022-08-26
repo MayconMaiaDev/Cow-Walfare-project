@@ -1,7 +1,7 @@
 # Cow-Walfare-project
 Projeto de captura de temperatura e umidade do ambiente onde as vacas estão inseridas.
 
-Realizado pelos alunos da Faculdade BandTec Digital School:
+Realizado pelos alunos da Faculdade BandTec Digital School em 2019:
 
 Igor Leite
 Lucas Venâncio
