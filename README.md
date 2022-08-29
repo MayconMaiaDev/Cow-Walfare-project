@@ -1,5 +1,5 @@
 ### Cow-Walfare-project
-Projeto de captura de temperatura e umidade do ambiente onde as vacas estão inseridas.  
+Projeto de IOT para captura de temperatura e umidade do ambiente onde as vacas estão inseridas.  
 
 Utilizamos as linguagens: C++, JavaScript, SQL e Node.JS
 
